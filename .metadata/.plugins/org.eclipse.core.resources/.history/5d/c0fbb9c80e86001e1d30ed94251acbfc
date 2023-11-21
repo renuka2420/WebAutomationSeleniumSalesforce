@@ -1,0 +1,19 @@
+package listeners;
+
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+
+import tests.BaseTest;
+
+public class SFDCListeners extends BaseTest implements ITestListener {
+
+	@Override
+	public void onTestSuccess(ITestResult result) {
+		BaseTest.test.pass(result.getName()+"Test case 6: passed");
+	}
+
+	@Override
+	public void onTestFailure(ITestResult result) {
+		BaseTest.test.fail(result.getName()+"Test case 6: passed");
+	}
+}

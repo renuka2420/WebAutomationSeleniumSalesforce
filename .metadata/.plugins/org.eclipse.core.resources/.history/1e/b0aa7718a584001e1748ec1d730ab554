@@ -1,0 +1,42 @@
+package tests;
+
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+//import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import constants.FileConstants;
+import pages.LoginPage;
+import pages.UserMenuPage;
+
+public class UserMenuTest_MyProfile_TC_6 extends BaseTest {
+	@BeforeClass
+	public void navigateToHome() throws IOException {
+
+		WebDriver driver = BaseTest.getDriver();
+		LoginPage lp = new LoginPage(driver);
+		lp.loginToApp(driver);
+	}
+
+	@Test(invocationCount=1)
+	public void userMenuDropdown_MyProfile_TC_6() throws IOException, InterruptedException {
+
+		WebDriver driver = BaseTest.getDriver();
+		UserMenuPage ump = new UserMenuPage(driver);
+		ump.userMenu.click();
+		Assert.assertTrue(ump.verifyUserMenuItems(), "Drop down with \"My profile\", \"My Settings\", \"Developer Console\",\"Logout\" , \"Switching to lightning Experience\" is not displayed");
+		Assert.assertTrue(ump.selectMyprofile(driver), "User profile page is not selected");
+		Assert.assertTrue(ump.isProfilePageVisible(), "User profile page is not visible");
+		ump.selectEditContact(driver);
+		Assert.assertTrue(ump.verifyEditContactPopUp(driver), "Edit contact pop up window is not displayed with contact and About tabs to edit. ");
+		Assert.assertTrue(ump.verifyLastNameChangeInAboutTab(driver, "abc"), "UserProfilePage with changed <lastname> is not displayed");
+Assert.assertTrue(ump.verifyCreatePost(driver, "Hello welcome dude"));
+Assert.assertTrue(ump.verifyFileUpload(driver, FileConstants.LOGIN_TESTDATA_FILE_PATH));
+ump.clickOnUpdatePhoto(driver);
+Assert.assertTrue(ump.uploadPhoto(driver, "Uploaded photo not appeared on the image."));
+
+	}
+}
