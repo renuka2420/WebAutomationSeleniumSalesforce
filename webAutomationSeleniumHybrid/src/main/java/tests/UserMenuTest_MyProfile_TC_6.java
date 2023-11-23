@@ -1,6 +1,7 @@
 package tests;
 
 import java.io.IOException;
+
 import java.lang.reflect.Method;
 
 import org.openqa.selenium.WebDriver;
@@ -36,11 +37,14 @@ public class UserMenuTest_MyProfile_TC_6 extends BaseTest {
 		//BaseTest.test.info("driver configured");
 		ExtentTest test=BaseTest.threadExtentTest.get();
 		UserMenuPage ump = new UserMenuPage(driver);
-		ump.userMenu.click();
 		test.info("driver configurd");
+		ump.userMenu.click();
+		test.info("user menu dropdown clicked");
+		
 		//BaseTest.test.info("usermenu dropdown clicked");
 		Assert.assertTrue(ump.verifyUserMenuItems(), "Drop down with \"My profile\", \"My Settings\", \"Developer Console\",\"Logout\" , \"Switching to lightning Experience\" is not displayed");
 		//BaseTest.test.info("verified usermenu items");
+		
 		Assert.assertTrue(ump.selectMyprofile(driver), "User profile page is not selected");
 		CommonUtils.waitForElement(driver, ump.profilePage);
 		Assert.assertTrue(ump.isProfilePageVisible(), "User profile page is not visible");
@@ -51,6 +55,7 @@ Assert.assertTrue(ump.verifyCreatePost(driver, "Hello welcome dude"));
 Assert.assertTrue(ump.verifyFileUpload(driver, FileConstants.LOGIN_TESTDATA_FILE_PATH));
 //ump.clickOnUpdatePhoto(driver);
 Assert.assertTrue(ump.uploadPhoto(driver, FileConstants.PROFILE_PHOTO_FILE_PATH));
+logger.info("userMenuDropdown_MyProfile_TC_6 :passed");
 
 
 //BaseTest.test.addScreenCaptureFromPath(CommonUtils.getScreenshot(driver));

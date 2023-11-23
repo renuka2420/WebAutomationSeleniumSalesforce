@@ -4,11 +4,9 @@
 	
 	<parameter name="browserName" value="chrome"></parameter>
 	<parameter name="isHeadless" value="false"></parameter>
-  <test name="chrome browser Test" parallel="methods" thread-count="1">
+  <test name="chrome browser Test" >
     <classes>
-     <class name="tests.LoginTest_TC_1"></class>
-      <class name="tests.LoginTest_TC_2"></class>
-      <class name="tests.UserMenuTest_MyProfile_TC_6"></class>
+      <class name="tests.LoginTest_ForgotPassword_TC_4B"></class>
     </classes>
   </test> <!-- Test -->
   
@@ -19,6 +17,9 @@
     <classes>
      <class name="tests.LoginTest_TC_1"></class>
       <class name="tests.LoginTest_TC_2"></class>
+        <class name="tests.LoginTest_Check_RememberMe_TC_3"></class>
+        <class name="tests.LoginTest_ForgotPassword_TC_4A"></class>
+        <class name="tests.LoginTest_ForgotPassword_TC_4B"></class>
       <class name="tests.UserMenuTest_MyProfile_TC_6"></class>
     </classes>
   </test>-->

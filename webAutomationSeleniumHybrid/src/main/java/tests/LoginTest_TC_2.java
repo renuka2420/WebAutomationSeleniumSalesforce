@@ -4,14 +4,18 @@ import java.io.IOException;
 
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Listeners;
 //import org.testng.Assert;
 //import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.ExtentTest;
+
+import listeners.SFDCListeners;
 //import constants.FileConstants;
 import pages.LoginPage;
 //import utils.FileUtils;
-
+@Listeners(SFDCListeners.class)
 public class LoginTest_TC_2 extends BaseTest{
 	
 	@Test
@@ -28,9 +32,12 @@ public class LoginTest_TC_2 extends BaseTest{
 		
 
 			WebDriver driver = BaseTest.getDriver();
+			ExtentTest test=BaseTest.threadExtentTest.get();
 			LoginPage lp = new LoginPage(driver);
+			test.info("driver congigured");
 			lp.loginToApp(driver);
-			
+			test.info("LoginTest_TC_2:Test case 2 passed");
+			logger.info("LoginTest_TC_2 :passed");
 		}
 	}
 

@@ -57,6 +57,9 @@ public void tearDown() {
 		threadLocalDriver.set(driver);
 	}
 
+
+
+
 	public static WebDriver getDriver() {
 		return threadLocalDriver.get();
 

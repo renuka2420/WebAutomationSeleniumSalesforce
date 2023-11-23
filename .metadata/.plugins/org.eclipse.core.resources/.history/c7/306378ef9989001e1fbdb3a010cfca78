@@ -1,0 +1,5 @@
+package tests;
+
+public class LoginTest_ForgotPassword_TC_4B {
+
+}

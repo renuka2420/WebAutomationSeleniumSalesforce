@@ -2,7 +2,6 @@ package pages;
 
 import java.io.IOException;
 
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,7 +26,8 @@ public class LoginPage extends BasePage {
 	@FindBy(id = "Login")
 	public WebElement loginButton;
 
-	@FindBy(xpath = "//*[@id=\"rememberUn\"]]")
+	// @FindBy(xpath = "//*[@id=\"rememberUn\"]]")
+	@FindBy(xpath = "//*[@id=\"rememberUn\"]")
 	public WebElement rememberMe;
 
 	@FindBy(id = "error")
@@ -42,7 +42,10 @@ public class LoginPage extends BasePage {
 	@FindBy(id = "un")
 	public WebElement forgotUsername;
 
-	@FindBy(xpath = "\"//a[text()='Return to Login']\"")
+	@FindBy(id = "continue")
+	public WebElement continueButton;
+
+	@FindBy(xpath = "//a[text()='Return to Login']")
 	public WebElement returnToLoginButton;
 
 	public boolean selectRememberMeCheckbox() {
@@ -50,7 +53,9 @@ public class LoginPage extends BasePage {
 		boolean isselected = false;
 		if (!rememberMe.isSelected()) {
 			rememberMe.click();
+
 			isselected = true;
+			logger.info("LoginPage:SelectRememberMeCheckbox is selected");
 
 		}
 		return isselected;
@@ -66,7 +71,7 @@ public class LoginPage extends BasePage {
 			loginButton.click();
 		}
 	}
-	
+
 	public void loginToAppEmptyPassword(WebDriver driver) throws IOException {
 		driver.get(FileUtils.readPropertiesFile(FileConstants.LOGIN_TESTDATA_FILE_PATH2, "prod.url"));
 		driver.manage().window().maximize();
@@ -76,4 +81,41 @@ public class LoginPage extends BasePage {
 			loginButton.click();
 		}
 	}
+
+	public void loginToApp_RememberMe(WebDriver driver) throws IOException {
+		driver.get(FileUtils.readPropertiesFile(FileConstants.LOGIN_TESTDATA_FILE_PATH2, "prod.url"));
+		driver.manage().window().maximize();
+		if (CommonUtils.waitForElement(driver, username)) {
+			username.sendKeys(FileUtils.readPropertiesFile(FileConstants.LOGIN_TESTDATA_FILE_PATH2, "username"));
+			password.sendKeys(FileUtils.readPropertiesFile(FileConstants.LOGIN_TESTDATA_FILE_PATH2, "password"));
+			rememberMe.click();
+			loginButton.click();
+		}
+	}
+
+	public void loginToApp_ForgotPassword_A(WebDriver driver) throws IOException {
+		driver.get(FileUtils.readPropertiesFile(FileConstants.LOGIN_TESTDATA_FILE_PATH2, "prod.url"));
+		driver.manage().window().maximize();
+		if (CommonUtils.waitForElement(driver, forgotPassword)) {
+			forgotPassword.click();
+			forgotUsername.sendKeys(FileUtils.readPropertiesFile(FileConstants.LOGIN_TESTDATA_FILE_PATH2, "username"));
+			continueButton.click();
+			CommonUtils.waitForElement(driver, returnToLoginButton);
+			returnToLoginButton.click();
+
+		}
+	}
+
+	public void loginToApp_B(WebDriver driver) throws IOException {
+		driver.get(FileUtils.readPropertiesFile(FileConstants.LOGIN_TESTDATA_FILE_PATH2, "prod.url"));
+		driver.manage().window().maximize();
+		if (CommonUtils.waitForElement(driver, username)) {
+			username.sendKeys(FileUtils.readPropertiesFile(FileConstants.LOGIN_TESTDATA_FILE_PATH2, "username1"));
+			password.sendKeys(FileUtils.readPropertiesFile(FileConstants.LOGIN_TESTDATA_FILE_PATH2, "password1"));
+			loginButton.click();
+
+		}
+	}
+
+	
 }

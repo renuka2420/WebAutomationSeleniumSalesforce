@@ -26,6 +26,7 @@
 				<configuration>
 					<suiteXmlFiles>
 						<suiteXmlFile>testing.xml </suiteXmlFile>
+						
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>

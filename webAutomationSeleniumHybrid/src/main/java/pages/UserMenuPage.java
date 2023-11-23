@@ -37,7 +37,7 @@ public class UserMenuPage extends BasePage {
 	@FindBy(id = "userNav-menuItems/a[4]")
 	public WebElement SwitchtoLightningExperience;
 
-	@FindBy(id = "userNav-menuItems/a[4]")
+	@FindBy(id = "userNav-menuItems/a[5]")
 	public WebElement Logout;
 
 	// My profile

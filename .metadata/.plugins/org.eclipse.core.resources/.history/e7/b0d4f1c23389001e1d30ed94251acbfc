@@ -1,0 +1,5 @@
+package tests;
+
+public class LoginTest_Check_RememberMe_TC_3 {
+
+}
